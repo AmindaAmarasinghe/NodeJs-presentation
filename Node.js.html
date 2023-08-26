@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://camelaissani.github.io/nodejs-presentation/#/6 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+
+		<title>Node.js</title>
+
+		<meta name="description" content="Quick introduction to NodeJS">
+		<meta name="author" content="Camel Aissani">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="./Node.js_files/reveal.min.css">
+		<link rel="stylesheet" href="./Node.js_files/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="./Node.js_files/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body style="transition: -webkit-transform 0.8s ease 0s;">
+
+		<div class="reveal default center" data-transition-speed="default" data-background-transition="default">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides" style="width: 960px; height: 700px; zoom: 0.837;">
+				<section class="past" style="top: -181px; display: none;" hidden="">
+					<h1 style="font-family: Georgia, 'Times New Roman';">Node.js</h1>
+					<h3></h3>
+					<br>
+					<p>
+						<a style="font-family: Apple Chancery, cursive;" href="http://www.nuageprive.fr/">Aminda Amarasinghe</a><br>
+						<small><a href="https://twitter.com/camelaissani">@Dept. of Computer Engineering, UoP</a></small><br>
+						<small><a>071 41 77 300</a></small>
+						<br>
+						
+					</p>
+					<a href="https://github.com/AmindaAmarasinghe"><img style="scale: 1;" src="Node.js_files/icons8-linkedin-50.png"></a>
+					<a href="https://medium.com/@e17012"><img  style="scale: 1;" src="Node.js_files/icons8-medium-50.png"></a>
+				</section>
+				<section class="past" style="top: -236px; display: none;" hidden="">
+					<h2 style="font-family: Georgia, 'Times New Roman';">What is Node.js?</h2>
+					<br>
+					<p>
+						<ul>
+							<li>Node.js is an open source, cross-platform runtime environment for developing server-side and networking applications. </li>
+							<li>Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.</li>
+						</ul>
+					</p>
+					<br>
+					<br>
+					<br>
+					<small>source <a href="htttp://nodejs.org">nodejs.org</a></small>
+				</section>
+				<section class="past" style="top: -236px; display: none;" hidden="">
+					<h2 style="font-family: Georgia, 'Times New Roman';">Event driven Architecture</h2>
+					<br>
+					<p>
+						The primary building blocks of Node.js' event-driven architecture are:
+						<ul>
+							<li>
+								EventEmitters: Objects that emit named events.
+							</li>
+							<li>Listeners: Functions that are called when a specific event is emitted.</li>
+							
+						</ul>
+						<pre>
+const EventEmitter = require('events');
+const myEmitter = new EventEmitter();
+myEmitter.on('event_name', (arg1, arg2, ...) => {
+// Your event handling logic here
+});
+						</pre>
+					</p>
+					<br>
+					<br>
+					<br>
+					<small>source <a href="https://codedamn.com/news/nodejs/event-driven-architecture">https://codedamn.com/news/nodejs/event-driven-architecture</a></small>
+				</section>
+				<section class="past" style="top: -236px; display: none;" hidden="">
+					<h2 style="font-family: Georgia, 'Times New Roman';">Event driven Architecture</h2>
+					<br>
+					<img src="Node.js_files/nodeJS.jpg" style="scale: 1.5;">
+					<br>
+					<br>
+					<br>
+					<small>source <a href="https://codedamn.com/news/nodejs/event-driven-architecture">https://codedamn.com/news/nodejs/event-driven-architecture</a></small>
+				</section>
+				<section class="past" style="top: -236px; display: none;" hidden="">
+					<h2 style="font-family: Georgia, 'Times New Roman';">Non blocking I/O model</h2>
+					<br>
+				<h4 style="color: aqua;">Blocking</h4>
+					<pre>
+const fs = require("fs");
+const data = fs.readFileSync("/file.md"); // blocks here until file is read
+console.log(data);
+moreWork(); // will run after console.log
+					</pre>
+				<h4 style="color: aqua;">Non blocking</h4>
+					<pre>
+const fs = require("fs");
+fs.readFile("/file.md", (err, data) => {
+	if (err) throw err;
+	console.log(data);
+});
+moreWork(); // will run before console.log						
+					</pre>
+					<br>
+					<br>
+					<br>
+				
+				</section>
+				<section class="past" style="top: -236px; display: none;" hidden="">
+					<h2 style="font-family: Georgia, 'Times New Roman';">Synchronous Vs Asynchronous</h2>
+					<br>
+					<pre style="display: flex; justify-content: left; text-align: left;">
+	Synchronous					Asynchronous
+	
+let greet_one = "Hello"				let greet_one = "Hello"
+let greet_two = "World!!!"			let greet_two = "World!!!"
+console.log(greet_one)	    			console.log(greet_one)
+for(let i=0; i < 100 000 000; ++i){		setTimeout(function(){
+}							console.log("Asynchronous");
+console.log(greet_two)				}, 10000)
+						console.log(greet_two);
+					</pre>
+					<br>
+					<br>
+					<br>
+				
+				</section>
+				<section class="past" style="top: -236px; display: none;" hidden="">
+					<h2 style="font-family: Georgia, 'Times New Roman';">Asynchronous vs Non blocking</h2>
+					<br>
+					<p>
+						<ul>
+							<li>Asynchronous: API will return immediately after calling the request. In the background, it will start a process to fulfill the request.</li>
+							<li>Non blocking: If API cannot complete the work, it returns an error immediately.</li>
+						</ul>
+					</p>
+					<br>
+					<br>
+					<br>
+					
+				</section>
+				
+				<section class="past" style="top: -111px; display: none;" hidden="">
+						<h2 style="font-family: Georgia, 'Times New Roman';">Problematic</h2>
+				</section>
+				<section class="past" style="top: -336px; display: block;" hidden="">
+						<h2 style="font-family: Georgia, 'Times New Roman';">I/O Latency</h2>
+						<img src="./Node.js_files/iolatency.png">
+						<br>
+						<small>Most of the the time the process waits for I/O (memory, disk, network)</small>
+				</section>
+				<section class="past" style="top: -84px; display: block;" hidden="">
+						<h2 style="font-family: Georgia, 'Times New Roman';">Conventional solution</h2>
+				</section>
+				<section class="past" style="top: -304.5px; display: block;" hidden="">
+						<h3 style="font-family: Georgia, 'Times New Roman';">Multi-threading</h3>
+		                <ul>
+						    <li>Context switching overhead</li>
+						    <li>Memory consumption</li>
+							<li>Manage concurrency</li>
+							<li>Dead lock</li>
+						</ul>
+						<br>
+						<br>
+						<h3 style="font-family: Georgia, 'Times New Roman';">Multi processes</h3>
+						<ul>
+							<li>High memory usage</li>
+							<li>Process scheduling overhead</li>
+						</ul>
+						<br>
+						<br>
+						and always waiting I/O...
+				</section>
+				<section class="present" style="top: -84px; display: block;">
+						<h2 style="font-family: Georgia, 'Times New Roman';">Node.JS answer</h2>
+				</section>
+				<section class="past" style="top: -236px; display: none;" hidden="">
+					<h2 style="font-family: Georgia, 'Times New Roman';">Single Threading vs Multi-Threading</h2>
+					<br>
+					<p>
+						<ul>
+							<li>Node.js runs JavaScript code in a single thread.</li>
+							<li>can only do one task at a time.</li>
+							<li>Node.js provides hidden threads through the libuv library.</li>
+							<li>libuv handles I/O operations like reading files from a disk or network requests.</li>
+							<li>worker_threads module executing JavaScript code in parallel</li>
+							
+						</ul>
+					</p>
+					<br>
+					<br>
+					<br>
+					<small>source <a href="https://www.digitalocean.com/community/tutorials/how-to-use-multithreading-in-node-js">https://www.digitalocean.com/community/tutorials/how-to-use-multithreading-in-node-js</a></small>
+				</section>
+				<section class="past" style="top: -236px; display: none;" hidden="">
+					
+							<img src="./Node.js_files/threads.png" >
+				</section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+						<h3 style="font-family: Georgia, 'Times New Roman';">Event Loop == Main thread</h3>
+						<h5 style="font-family: Georgia, 'Times New Roman'; text-transform:capitalize;"><i>The beauty of the event loop is not of running everything in a single thread, but it’s available to “put aside” long time-consuming I/O operations to keep the execution of other instructions.</i></h5>
+				</p></section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+						<h3 style="font-family: Georgia, 'Times New Roman';">Event Loop theory</h3>
+						<img src="./Node.js_files/1.png">
+						<p>Delegate I/O part and manage callbacks</p><p>
+				</p></section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">Event Loop theory</h3>
+					<img src="./Node.js_files/2.png">
+					<p>Delegate I/O part and manage callbacks</p><p>
+				</p></section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">Event Loop theory</h3>
+					<img src="./Node.js_files/3.png">
+					<p>Delegate I/O part and manage callbacks</p><p>
+				</p></section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">Event Loop theory</h3>
+					<img src="./Node.js_files/1-1.png">
+					<p>Delegate I/O part and manage callbacks</p><p>
+				</p></section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">Event Loop theory</h3>
+					<img src="./Node.js_files/3-1.png">
+					<p>Delegate I/O part and manage callbacks</p><p>
+				</p></section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">Event Loop theory</h3>
+					<img src="./Node.js_files/4-1.png">
+					<p>Delegate I/O part and manage callbacks</p><p>
+				</p></section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">Event Loop theory</h3>
+					<img src="./Node.js_files/5-1.png">
+					<p>Delegate I/O part and manage callbacks</p><p>
+				</p></section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">Event Loop theory</h3>
+					<img src="./Node.js_files/6.png">
+					<p>Delegate I/O part and manage callbacks</p><p>
+				</p></section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">Event Loop theory</h3>
+					<img src="./Node.js_files/7.png">
+					<p>Delegate I/O part and manage callbacks</p><p>
+				</p></section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">Event Loop theory</h3>
+					<img src="./Node.js_files/8.png">
+					<p>Delegate I/O part and manage callbacks</p><p>
+				</p></section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">Event Loop theory</h3>
+					<img src="./Node.js_files/9.png">
+					<p>Delegate I/O part and manage callbacks</p><p>
+				</p></section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">Event Loop theory</h3>
+					<img src="./Node.js_files/10.png">
+					<p>Delegate I/O part and manage callbacks</p><p>
+				</p></section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">Event Loop theory</h3>
+					<img src="./Node.js_files/11.png">
+					<p>Delegate I/O part and manage callbacks</p><p>
+				</p></section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">Event Loop theory</h3>
+					<img src="./Node.js_files/12.png">
+					<p>Delegate I/O part and manage callbacks</p><p>
+				</p></section>
+				<section class="future" style="top: -350px; display: block;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">Async/Await</h3>
+					<pre>
+					
+	async function showAvatar() {
+
+		// read our JSON
+		let response = await fetch('/article/promise-chaining/user.json');
+		let user = await response.json();
+		
+		// read github user
+		let githubResponse = await fetch(`https://api.github.com/users/${user.name}`);
+		let githubUser = await githubResponse.json();
+		
+		return githubUser;
+	}
+						  
+					</pre>
+				</p></section>
+				<section class="future" style="top: -293.5px; display: none;" hidden="">
+						<h2 style="font-family: Georgia, 'Times New Roman';">NPM</h2>
+						<br>
+						<p>npm is the default package manager for Node.js.</p><p>
+						</p><p>It manages dependencies for an application.</p><p>
+						</p><p>It also allows users to install Node.js applications that are available on the npm registry.</p>
+						<br>
+						<br>
+						<br>
+						
+				</section>
+				<section class="future" style="top: -293.5px; display: none;" hidden="">
+					Requirements:<br>
+					One of the following versions of Node.js must be installed to run npm:<br>
+					<ul>
+					<li>14.x.x >= 14.17.0</li>
+					<li>16.x.x >= 16.13.0</li>
+					<li>18.0.0 or higher</li>
+					</ul>
+			</section>
+				<section class="future" style="top: -111px; display: none;" hidden="">
+						<h1 style="font-family: Georgia, 'Times New Roman';">Benefits</h1>
+				</section>
+				<section class="future" style="top: -281px; display: none;" hidden="">
+						<p>Multi-Platform (Linux, Mac, Windows)</p>
+						<br>
+						<p>One development language JS on client and server side</p>
+						<br>
+						<p>Open source technology</p> 
+						<br>
+						<p>Many NPM packages availables on <a href="https://www.npmjs.org/">npmjs.org</a></p>
+						<br>
+						<p>Short learning curve (Event loop theory, JavaScript, Evented programming)</p>
+				</section>
+				
+				<section class="future" style="top: -111px; display: none;" hidden="">
+					<h1 style="font-family: Georgia, 'Times New Roman';">live demo</h1>
+				</section>
+				<section class="future" style="top: -111px; display: none;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">Installation</h3>
+					LTS: <a href="https://nodejs.org/en">NodeJs.org</a><br>
+					npm i node@14.20.0
+				</section>
+				<section class="future" style="top: -55px; display: none;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">NVM</h3>
+					NodeJs - v12 or higher (Recommended) using nvm <br>
+					(It is easy to change version with nvm)<br>
+
+					1. To see the entire list of Node.js versions <br>
+					
+					<h6 style="color: yellow; text-transform: lowercase;font-family: Verdana, Geneva, Tahoma, sans-serif;">$ nvm ls-remote</h6><br>
+					
+					2. To install a specific version<br>
+					<h6 style="color: rgb(58, 228, 36); text-transform: lowercase;font-family: Verdana, Geneva, Tahoma, sans-serif;">$ nvm install [version]</h6><br>
+					<h6 style="color: yellow; text-transform: lowercase;font-family: Verdana, Geneva, Tahoma, sans-serif;">Ex : nvm install 14.17.0</h6><br>
+
+					If multiple versions have been installed, <br>
+					<h6 style="color: yellow; text-transform: lowercase;font-family: Verdana, Geneva, Tahoma, sans-serif;">$ nvm use 16.13.0</h6><br>
+
+					can be used to switch to another version
+				</section>
+				<section class="future" style="top: -111px; display: none;" hidden="">
+					<img src="Node.js_files/nvm-usage-highlighted.jpg">
+					<small>source <a href="https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/">https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/</a></small>
+				</section>
+				<section class="future" style="top: -111px; display: none;" hidden="">
+					<h3 style="font-family: Georgia, 'Times New Roman';">initializing a project</h3>
+					<pre>		$npm init -y</pre>
+					<pre>
+		package.json
+		{
+			"name": "multi-threading_demo",
+			"version": "1.0.0",
+			"description": "",
+			"main": "index.js",
+			"scripts": {
+				"test": "echo \"Error: no test specified\" && exit 1"
+			},
+			"keywords": [],
+			"author": "",
+			"license": "ISC"
+		}
+					</pre>
+				</section>
+				<section class="future" style="top: -180px; display: none;" hidden="">
+					<h2 style="font-family: Georgia, 'Times New Roman';">Read file and display it</h2>
+					<pre>
+
+		var fs = require('fs');
+
+		fs.readFile('./sample.txt','utf8', function(err,data) {
+			if(err) {
+				return console.log(err);
+			}
+			console.log(data);
+		});
+					</pre>
+				</section>
+				<section class="future" style="top: -191.5px; display: none;" hidden="">
+					<h2 style="font-family: Georgia, 'Times New Roman';">Simple http server</h2>
+					<pre>
+
+		var http = require('http');
+		
+		http.</span>createServer(<span class="function"><span class="keyword">function</span><span class="params">(req, res)</span> {</span>
+			<span class="transposed_variable">res.</span>writeHead(<span class="number">200</span>, <span class="cell">{<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>}</span>);
+			<span class="transposed_variable">res.</span><span class="keyword">end</span>(<span class="string">'Hello World'</span>);
+		}).listen(<span class="number">8000</span>, <span class="string">'127.0.0.1'</span>);
+
+		<span class="transposed_variable">console.</span><span class="built_in">log</span>(<span class="string">'Server running at http://localhost:8000/'</span>);</code></pre>					
+					</section>
+				<section class="future" style="top: -276.5px; display: block;" hidden="">
+					<h2 style="font-family: Georgia, 'Times New Roman';">Platform</h2>
+					<img src="./Node.js_files/platform.png">
+				</section>
+				<section class="future" style="top: -111px; display: none;" hidden="">
+					<h1 style="font-family: Georgia, 'Times New Roman';">N-API</h1>
+				</section>
+				<section class="future" style="top: -281px; display: none;" hidden="">
+					<h5>There can be many reasons to write nodejs addons:</h5>
+					<ul>
+						<li>You may want to access some native apis that is difficult using JS alone.</li>
+						<li>You may want to integrate a third party library written in C/C++ and use it directly in NodeJs.</li>
+						<li>You may want to rewrite some of the modules in C++ for performance reasons.</li>
+					</ul>
+			</section>
+				<section class="past" style="top: -236px; display: none;" hidden="">
+					
+					<img style="scale: 1.2;" src="Node.js_files/napi.jpg">
+					<pre>
+		int info_length = info.Length();
+		int max1 = info[0].As< Napi::Number >();
+		int max2 = info[1].As< Napi::Number >();
+		int max3 = info[2].As< Napi::Number >();						
+					</pre>
+					<small><a href="https://blog.atulr.com/node-addon-guide/">source</a></small>
+				</section>
+				<section class="past" style="top: -236px; display: none;" hidden="">
+					
+					<img style="scale: 1.2;" src="Node.js_files/napi_structure.jpg"><br><br>
+					<small>project structure</small>
+				</section>
+				<section class="past" style="top: -236px; display: none;" hidden="">
+					
+					<img style="scale: 1.2;" src="Node.js_files/napi-js.jpg"><br><br>
+					<small>binding.gyp</small>
+				</section>
+				<section class="future" style="top: -111px; display: none;" hidden="">
+					<h1 style="font-family: Georgia, 'Times New Roman';">Thank you!</h1>
+				</section>
+			</div>
+		<div class="backgrounds"><div class="slide-background past"></div><div class="slide-background past"></div><div class="slide-background past"></div><div class="slide-background past"></div><div class="slide-background past"></div><div class="slide-background past"></div><div class="slide-background present"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div><div class="slide-background future"></div></div><div class="progress" style="display: block;"><span style="width: 409.8px;"></span></div><aside class="controls" style="display: block;"><div class="navigate-left enabled"></div><div class="navigate-right enabled"></div><div class="navigate-up"></div><div class="navigate-down"></div></aside><div class="slide-number"></div><div class="state-background"></div><div class="pause-overlay"></div></div>
+
+		<script src="./Node.js_files/head.min.js.download"></script>
+		<script src="./Node.js_files/reveal.min.js.download"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script><script type="text/javascript" src="./Node.js_files/highlight.js.download"></script><script type="text/javascript" src="./Node.js_files/zoom.js.download"></script><script type="text/javascript" src="./Node.js_files/notes.js.download"></script>
+
+	
+
+</body></html>
