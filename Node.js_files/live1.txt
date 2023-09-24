@@ -1,0 +1,6 @@
+let greet_one = "Hello"
+let greet_two = "World!!!"
+console.log(greet_one)
+let i=0
+for(; i < 100000000; ++i){}
+console.log(greet_two+" "+i)

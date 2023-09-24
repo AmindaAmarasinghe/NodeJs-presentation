@@ -69,6 +69,122 @@
 					<br>
 					<small>source <a href="htttp://nodejs.org">nodejs.org</a></small>
 				</section>
+				<section class="future" style="top: -293.5px; display: none;" hidden="">
+					<h2 style="font-family: Georgia, 'Times New Roman';">NPM</h2>
+					<br>
+					<p>npm is the default package manager for Node.js.</p><p>
+					</p><p>It manages dependencies for an application.</p><p>
+					</p><p>It also allows users to install Node.js applications that are available on the npm registry.</p>
+					<br>
+					<br>
+					<br>
+					
+			</section>
+			<section class="future" style="top: -293.5px; display: none;" hidden="">
+				Requirements:<br>
+				One of the following versions of Node.js must be installed to run npm:<br>
+				<ul>
+				<li>14.x.x >= 14.17.0</li>
+				<li>16.x.x >= 16.13.0</li>
+				<li>18.0.0 or higher</li>
+				</ul>
+		</section>
+			<section class="future" style="top: -111px; display: none;" hidden="">
+					<h1 style="font-family: Georgia, 'Times New Roman';">Benefits</h1>
+			</section>
+			<section class="future" style="top: -281px; display: none;" hidden="">
+					<p>Multi-Platform (Linux, Mac, Windows)</p>
+					<br>
+					<p>One development language JS on client and server side</p>
+					<br>
+					<p>Open source technology</p> 
+					<br>
+					<p>Many NPM packages availables on <a href="https://www.npmjs.org/">npmjs.org</a></p>
+					<br>
+					<p>Short learning curve (Event loop theory, JavaScript, Event programming)</p>
+			</section>
+			
+			<section class="future" style="top: -111px; display: none;" hidden="">
+				<h1 style="font-family: Georgia, 'Times New Roman';">live demo</h1>
+			</section>
+			<section class="future" style="top: -111px; display: none;" hidden="">
+				<h3 style="font-family: Georgia, 'Times New Roman';">Installation</h3>
+				LTS: <a href="https://nodejs.org/en">NodeJs.org</a><br>
+				npm i node@14.20.0
+				NodeJs - v12 or higher (Recommended)
+			</section>
+			<section class="future" style="top: -55px; display: none;" hidden="">
+				<h3 style="font-family: Georgia, 'Times New Roman';">NVM</h3>
+				Using nvm it is easy to change version<br>
+
+				1. To see the entire list of Node.js versions <br>
+				
+				<h6 style="color: yellow; text-transform: lowercase;font-family: Verdana, Geneva, Tahoma, sans-serif;">$ nvm list</h6><br>
+				
+				2. To install a specific version<br>
+				<h6 style="color: rgb(58, 228, 36); text-transform: lowercase;font-family: Verdana, Geneva, Tahoma, sans-serif;">$ nvm install [version]</h6><br>
+				<h6 style="color: yellow; text-transform: lowercase;font-family: Verdana, Geneva, Tahoma, sans-serif;">Ex : nvm install 14.17.0</h6><br>
+
+				If multiple versions have been installed, <br>
+				<h6 style="color: yellow; text-transform: lowercase;font-family: Verdana, Geneva, Tahoma, sans-serif;">$ nvm use 16.13.0</h6><br>
+
+				can be used to switch to another version
+			</section>
+			<section class="future" style="top: -111px; display: none;" hidden="">
+				<img src="Node.js_files/nvm-usage-highlighted.jpg">
+				<small>source <a href="https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/">https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/</a></small>
+			</section>
+			<section class="future" style="top: -111px; display: none;" hidden="">
+				<h3 style="font-family: Georgia, 'Times New Roman';">initializing a project</h3>
+				<pre>		$npm init -y</pre>
+				<pre>
+	package.json
+	{
+		"name": "multi-threading_demo",
+		"version": "1.0.0",
+		"description": "",
+		"main": "index.js",
+		"scripts": {
+			"test": "echo \"Error: no test specified\" && exit 1"
+		},
+		"keywords": [],
+		"author": "",
+		"license": "ISC"
+	}
+				</pre>
+			</section>
+			<section class="future" style="top: -180px; display: none;" hidden="">
+				<h2 style="font-family: Georgia, 'Times New Roman';">Read file and display it</h2>
+				<pre>
+
+	var fs = require('fs');
+
+	fs.readFile('./sample.txt','utf8', function(err,data) {
+		if(err) {
+			return console.log(err);
+		}
+		console.log(data);
+	});
+				</pre>
+			</section>
+			<section class="future" style="top: -191.5px; display: none;" hidden="">
+				<h2 style="font-family: Georgia, 'Times New Roman';">Simple http server</h2>
+				<pre>
+
+	var http = require('http');
+	
+	http.</span>createServer(<span class="function"><span class="keyword">function</span><span class="params">(req, res)</span> {</span>
+		<span class="transposed_variable">res.</span>writeHead(<span class="number">200</span>, <span class="cell">{<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>}</span>);
+		<span class="transposed_variable">res.</span><span class="keyword">end</span>(<span class="string">'Hello World'</span>);
+	}).listen(<span class="number">8000</span>, <span class="string">'127.0.0.1'</span>);
+
+	<span class="transposed_variable">console.</span><span class="built_in">log</span>(<span class="string">'Server running at http://localhost:8000/'</span>);</code></pre>					
+				</section>
+			<section class="future" style="top: -276.5px; display: block;" hidden="">
+				<h2 style="font-family: Georgia, 'Times New Roman';">Platform</h2>
+				<img src="./Node.js_files/platform.png">
+			</section>
+			
 				<section class="past" style="top: -236px; display: none;" hidden="">
 					<h2 style="font-family: Georgia, 'Times New Roman';">Event driven Architecture</h2>
 					<br>
@@ -84,15 +200,17 @@
 						<pre>
 const EventEmitter = require('events');
 const myEmitter = new EventEmitter();
-myEmitter.on('event_name', (arg1, arg2, ...) => {
+myEmitter.on('FirstEvent', (arg1, arg2, ...) => {
 // Your event handling logic here
 });
+// Raising FirstEvent
+myEmitter.emit('FirstEvent', 'This is my first Node.js event emitter example.');
+
 						</pre>
 					</p>
 					<br>
 					<br>
 					<br>
-					<small>source <a href="https://codedamn.com/news/nodejs/event-driven-architecture">https://codedamn.com/news/nodejs/event-driven-architecture</a></small>
 				</section>
 				<section class="past" style="top: -236px; display: none;" hidden="">
 					<h2 style="font-family: Georgia, 'Times New Roman';">Event driven Architecture</h2>
@@ -310,121 +428,6 @@ console.log(greet_two)				}, 10000)
 						  
 					</pre>
 				</p></section>
-				<section class="future" style="top: -293.5px; display: none;" hidden="">
-						<h2 style="font-family: Georgia, 'Times New Roman';">NPM</h2>
-						<br>
-						<p>npm is the default package manager for Node.js.</p><p>
-						</p><p>It manages dependencies for an application.</p><p>
-						</p><p>It also allows users to install Node.js applications that are available on the npm registry.</p>
-						<br>
-						<br>
-						<br>
-						
-				</section>
-				<section class="future" style="top: -293.5px; display: none;" hidden="">
-					Requirements:<br>
-					One of the following versions of Node.js must be installed to run npm:<br>
-					<ul>
-					<li>14.x.x >= 14.17.0</li>
-					<li>16.x.x >= 16.13.0</li>
-					<li>18.0.0 or higher</li>
-					</ul>
-			</section>
-				<section class="future" style="top: -111px; display: none;" hidden="">
-						<h1 style="font-family: Georgia, 'Times New Roman';">Benefits</h1>
-				</section>
-				<section class="future" style="top: -281px; display: none;" hidden="">
-						<p>Multi-Platform (Linux, Mac, Windows)</p>
-						<br>
-						<p>One development language JS on client and server side</p>
-						<br>
-						<p>Open source technology</p> 
-						<br>
-						<p>Many NPM packages availables on <a href="https://www.npmjs.org/">npmjs.org</a></p>
-						<br>
-						<p>Short learning curve (Event loop theory, JavaScript, Evented programming)</p>
-				</section>
-				
-				<section class="future" style="top: -111px; display: none;" hidden="">
-					<h1 style="font-family: Georgia, 'Times New Roman';">live demo</h1>
-				</section>
-				<section class="future" style="top: -111px; display: none;" hidden="">
-					<h3 style="font-family: Georgia, 'Times New Roman';">Installation</h3>
-					LTS: <a href="https://nodejs.org/en">NodeJs.org</a><br>
-					npm i node@14.20.0
-				</section>
-				<section class="future" style="top: -55px; display: none;" hidden="">
-					<h3 style="font-family: Georgia, 'Times New Roman';">NVM</h3>
-					NodeJs - v12 or higher (Recommended) using nvm <br>
-					(It is easy to change version with nvm)<br>
-
-					1. To see the entire list of Node.js versions <br>
-					
-					<h6 style="color: yellow; text-transform: lowercase;font-family: Verdana, Geneva, Tahoma, sans-serif;">$ nvm ls-remote</h6><br>
-					
-					2. To install a specific version<br>
-					<h6 style="color: rgb(58, 228, 36); text-transform: lowercase;font-family: Verdana, Geneva, Tahoma, sans-serif;">$ nvm install [version]</h6><br>
-					<h6 style="color: yellow; text-transform: lowercase;font-family: Verdana, Geneva, Tahoma, sans-serif;">Ex : nvm install 14.17.0</h6><br>
-
-					If multiple versions have been installed, <br>
-					<h6 style="color: yellow; text-transform: lowercase;font-family: Verdana, Geneva, Tahoma, sans-serif;">$ nvm use 16.13.0</h6><br>
-
-					can be used to switch to another version
-				</section>
-				<section class="future" style="top: -111px; display: none;" hidden="">
-					<img src="Node.js_files/nvm-usage-highlighted.jpg">
-					<small>source <a href="https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/">https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/</a></small>
-				</section>
-				<section class="future" style="top: -111px; display: none;" hidden="">
-					<h3 style="font-family: Georgia, 'Times New Roman';">initializing a project</h3>
-					<pre>		$npm init -y</pre>
-					<pre>
-		package.json
-		{
-			"name": "multi-threading_demo",
-			"version": "1.0.0",
-			"description": "",
-			"main": "index.js",
-			"scripts": {
-				"test": "echo \"Error: no test specified\" && exit 1"
-			},
-			"keywords": [],
-			"author": "",
-			"license": "ISC"
-		}
-					</pre>
-				</section>
-				<section class="future" style="top: -180px; display: none;" hidden="">
-					<h2 style="font-family: Georgia, 'Times New Roman';">Read file and display it</h2>
-					<pre>
-
-		var fs = require('fs');
-
-		fs.readFile('./sample.txt','utf8', function(err,data) {
-			if(err) {
-				return console.log(err);
-			}
-			console.log(data);
-		});
-					</pre>
-				</section>
-				<section class="future" style="top: -191.5px; display: none;" hidden="">
-					<h2 style="font-family: Georgia, 'Times New Roman';">Simple http server</h2>
-					<pre>
-
-		var http = require('http');
-		
-		http.</span>createServer(<span class="function"><span class="keyword">function</span><span class="params">(req, res)</span> {</span>
-			<span class="transposed_variable">res.</span>writeHead(<span class="number">200</span>, <span class="cell">{<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>}</span>);
-			<span class="transposed_variable">res.</span><span class="keyword">end</span>(<span class="string">'Hello World'</span>);
-		}).listen(<span class="number">8000</span>, <span class="string">'127.0.0.1'</span>);
-
-		<span class="transposed_variable">console.</span><span class="built_in">log</span>(<span class="string">'Server running at http://localhost:8000/'</span>);</code></pre>					
-					</section>
-				<section class="future" style="top: -276.5px; display: block;" hidden="">
-					<h2 style="font-family: Georgia, 'Times New Roman';">Platform</h2>
-					<img src="./Node.js_files/platform.png">
-				</section>
 				<section class="future" style="top: -111px; display: none;" hidden="">
 					<h1 style="font-family: Georgia, 'Times New Roman';">N-API</h1>
 				</section>
